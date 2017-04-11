@@ -1,0 +1,27 @@
+<div ng-controller="personneDetailController as persDetCtrl">
+{{persDetCtrl.personne}}
+	<h2 ng-click="persDetCtrl.expand()" >{{persDetCtrl.personne.nom}} {{persDetCtrl.personne.prenom}}</h2>
+	<h3 ng-click="persDetCtrl.showDetail('telephones')">Téléphones</h3>
+	<ul ng-show="persDetCtrl.detail.telephones">
+		<li ng-repeat="telephone in persDetCtrl.personne.telephones">
+			<label>Type:</label>{{telephone.libelle}}<br>
+			<label>Numéro:</label>{{telephone.numero}}
+		</li>
+	</ul>
+	<h3 ng-click="persDetCtrl.showDetail('adresses')">Adresses</h3>
+	<ul ng-show="persDetCtrl.detail.adresses">
+		<li ng-repeat="adresse in persDetCtrl.personne.personnesAdresses">
+			<label>Arrivée:</label> {{adresse.debut | date:'dd MMM y' }}<br>
+			<div ng-if="adresse.fin">
+				<label>Départ:</label>{{adresse.fin | date:'dd MMM y'}}<br>
+			</div>
+			<div ng-if="adresse.fin === null"><label>Adresse actuelle</label><br></div>
+			<label>libelle:</label>{{adresse.adresse.libelle}}<br>
+			<label>Ville:</label>{{adresse.adresse.ville.nom}}
+			<label>Code postal:</label>{{adresse.adresse.ville.codePostal}}
+
+		</li>
+	</ul>
+	</div>
+	<button ng-click="persDetCtrl.back()">Retour</button>
+</div>
