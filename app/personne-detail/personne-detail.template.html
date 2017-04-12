@@ -1,16 +1,16 @@
-<div ng-controller="personneDetailController as persDetCtrl">
-{{persDetCtrl.personne}}
-	<h2 ng-click="persDetCtrl.expand()" >{{persDetCtrl.personne.nom}} {{persDetCtrl.personne.prenom}}</h2>
-	<h3 ng-click="persDetCtrl.showDetail('telephones')">Téléphones</h3>
-	<ul ng-show="persDetCtrl.detail.telephones">
-		<li ng-repeat="telephone in persDetCtrl.personne.telephones">
+<div data-ng-controller="personneDetailController as vm">
+{{vm.personne}}
+	<h2 ng-click="vm.expand()" >{{vm.personne.nom}} {{vm.personne.prenom}}</h2>
+	<h3 ng-click="vm.showDetail('telephones')">Téléphones</h3>
+	<ul ng-show="vm.detail.telephones">
+		<li ng-repeat="telephone in vm.personne.telephones">
 			<label>Type:</label>{{telephone.libelle}}<br>
 			<label>Numéro:</label>{{telephone.numero}}
 		</li>
 	</ul>
-	<h3 ng-click="persDetCtrl.showDetail('adresses')">Adresses</h3>
-	<ul ng-show="persDetCtrl.detail.adresses">
-		<li ng-repeat="adresse in persDetCtrl.personne.personnesAdresses">
+	<h3 ng-click="vm.showDetail('adresses')">Adresses</h3>
+	<ul ng-show="vm.detail.adresses">
+		<li ng-repeat="adresse in vm.personne.personnesAdresses">
 			<label>Arrivée:</label> {{adresse.debut | date:'dd MMM y' }}<br>
 			<div ng-if="adresse.fin">
 				<label>Départ:</label>{{adresse.fin | date:'dd MMM y'}}<br>
@@ -22,6 +22,5 @@
 
 		</li>
 	</ul>
+	<button ng-click="vm.back()">Retour</button>
 	</div>
-	<button ng-click="persDetCtrl.back()">Retour</button>
-</div>

@@ -1,15 +1,56 @@
-'use strict';
-angular.module('core.personne')
-	.factory('Personne', ['$http', function($http) {
-		var urlBase = 'http://localhost:8088/';
-		var Personne = {};
+(function() {
 
-		Personne.getPersonnes = function(){
-			return $http.get(urlBase+'personnes');
+	'use strict';
+	angular
+		.module('app')
+		.factory('Personne', Personne);
+	Personne.$inject = ['$http'];
+
+	function Personne($http) {
+		var urlBase = 'http://localhost:8088/';
+		var service = {
+			getPersonnes: getPersonnes,
+			getPersonne: getPersonne,
+			savePersonne:savePersonne
 		};
 
-		Personne.getPersonne = function(id){
-			return $http.get(urlBase+'personnes/'+id)
-		}
-		return Personne;
-	}])
+		function getPersonnes() {
+			return $http({
+				method: 'GET',
+				url: urlBase + 'personnes'
+			}).success(function(data, status, headers, config) {
+				return data;
+			}).error(function(data, status, headers, config) {
+
+			});
+		};
+
+		function getPersonne(id) {
+			return $http({
+				method: 'GET',
+				url: urlBase + 'personnes/' + id
+			}).success(function(data, status, headers, config) {
+				return data;
+			}).error(function(data, status, headers, config) {
+
+			});
+
+		};
+
+		function savePersonne(personne) {
+			return $http({
+				method: 'POST',
+				data: personne,
+				url: urlBase + 'personnes'
+			}).success(function(response) {
+				console.log(response);
+			}).error(function(response) {
+				console.log(response);
+			});
+		};
+
+
+		return service;
+
+	}
+})();

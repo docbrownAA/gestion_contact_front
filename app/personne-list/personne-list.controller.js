@@ -1,15 +1,21 @@
-'use strict';
-/**
- *  Module
- *
- */
-angular.module('app').
-controller('personneListController', ['Personne',
-	function(Personne) {
-		var vm = this;
+(function() {
+	'use strict';
+	/**
+	 *  Module
+	 *
+	 */
+	angular
+		.module('app')
+		.controller('personneListController', personneListController);
+	personneListController.$inject = ['Personne','$location'];
 
-		vm.getPersonnes = function() {
-			Personne.getPersonnes()
+	function personneListController(Personne,$location) {
+		var vm = this;
+		vm.getPersonnes = getPersonnes;
+		vm.nouveau = nouveau;
+
+		function getPersonnes() {
+			return Personne.getPersonnes()
 				.then(function(response) {
 						vm.personnes = response.data;
 						console.log(vm.personnes);
@@ -19,6 +25,12 @@ controller('personneListController', ['Personne',
 					})
 
 		};
-		vm.getPersonnes();
+
+		function nouveau(){
+			$location.path('/nouveau');
+		}
+
+		getPersonnes();
 	}
-])
+
+})();
