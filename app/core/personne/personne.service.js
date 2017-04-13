@@ -11,7 +11,8 @@
 		var service = {
 			getPersonnes: getPersonnes,
 			getPersonne: getPersonne,
-			savePersonne:savePersonne
+			savePersonne:savePersonne,
+			deletePersonne:deletePersonne
 		};
 
 		function getPersonnes() {
@@ -48,6 +49,18 @@
 				console.log(response);
 			});
 		};
+
+		function deletePersonne(idPersonne){
+			return $http({
+				method:'DELETE',
+				data:idPersonne,
+				url:urlBase+'personnes/personne/'+idPersonne
+			}).success(function(response){
+				console.log(response);
+			}).error(function(response){
+				console.log(response);
+			});
+		}
 
 
 		return service;

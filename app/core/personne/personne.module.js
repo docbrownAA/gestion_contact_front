@@ -1,2 +1,4 @@
-'use strict';
-angular.module('core.personne',['ngResource']);
+(function() {
+	'use strict';
+	angular.module('core.personne', ['ngResource']);
+})();

@@ -6,8 +6,6 @@
 			'ngAnimate',
 			'ngRoute',
 			'core',
-			'phoneDetail',
-			'phoneList',
 			'personneList',
 			'personneDetail'
 		])
@@ -20,25 +18,19 @@
 		$locationProvider.hashPrefix('!');
 
 		$routeProvider.
-			/* when('/phones', {
-			   template: '<phone-list></phone-list>'
-			 }).
-			 when('/phones/:phoneId', {
-			   template: '<phone-detail></phone-detail>'
-			 }).*/
 		when('/personnes', {
 				controller: 'personneListController',
-				templateUrl: '/personne-list/personne-list.template.html',
+				templateUrl: 'components/personne-list/personne-list.template.html',
 				controllerAs: 'persListCtrl'
 			})
 			.when('/personnes/:personneId', {
 				controller: 'personneDetailController',
-				templateUrl: 'personne-detail/personne-detail.template.html',
+				templateUrl: 'components/personne-detail/personne-detail.template.html',
 				controllerAs: 'persDetCtrl'
 			})
 			.when('/nouveau', {
 				controller: 'personneNouveauController',
-				templateUrl: 'personne-nouveau/personne-nouveau.template.html',
+				templateUrl: 'components/personne-nouveau/personne-nouveau.template.html',
 				controllerAs: 'pnCtrl'
 			})
 			.otherwise('/personnes');

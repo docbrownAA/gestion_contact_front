@@ -1,0 +1,9 @@
+<div ng-controller="personneListController as vm">
+      <ul class="personnes" >
+        <li ng-repeat="personne in vm.personnes ">
+          <span class="badge" ng-click="vm.gotoPersonne(personne.id)">{{personne.id}}</span>{{personne.nom}} {{personne.prenom}}
+          <button class="delete" ng-click="vm.deletePersonne(personne.id)">x</button>
+        </li>
+      </ul>
+	<button ng-click="vm.nouveau()">Nouveau</button>
+</div>
